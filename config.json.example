@@ -1,0 +1,9 @@
+{
+  "language": "auto",
+  "summary_model": "haiku",
+  "budget_skip_pct": 93,
+  "dashboard_port": 8787,
+  "terminal_app": "Terminal",
+  "max_projects": 10,
+  "stale_handoff_days": 14
+}
