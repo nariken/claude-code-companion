@@ -2,6 +2,8 @@
 
 A macOS menu bar companion for [Claude Code](https://claude.com/claude-code) that fixes three everyday annoyances:
 
+> Announcement: [🇯🇵 日本語](https://x.com/nariken/status/2072598706504015998) · [🇬🇧 English](https://x.com/nariken/status/2072598874649403418)
+
 | Problem | Solution |
 |---|---|
 | Context fills up and you keep hand-writing handoff notes for the next session | Handoffs are **auto-generated** (cheap-model summary of the transcript) on session end / compaction, and **auto-injected** into new sessions — no more copy-paste |
