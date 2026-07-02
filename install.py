@@ -21,7 +21,9 @@ HOOK_CMD = f"python3 {APP_DIR}/src/hook_entry.py"
 SETTINGS = Path.home() / ".claude" / "settings.json"
 AGENT_LABEL = "com.aiagent-control.menubar"
 AGENT_PLIST = Path.home() / "Library" / "LaunchAgents" / f"{AGENT_LABEL}.plist"
-MARKER = "aiagent-control"  # identifies our hook entries for idempotency
+# Identifies our hook entries for idempotency regardless of where the
+# repo was cloned (the command always ends in "hook_entry.py <mode>").
+MARKER = "hook_entry.py"
 
 HOOK_DEFS = {
     "SessionEnd": [{

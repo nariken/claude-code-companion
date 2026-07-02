@@ -1,4 +1,4 @@
-# aiagent-control
+# claude-code-companion
 
 A macOS menu bar companion for [Claude Code](https://claude.com/claude-code) that fixes three everyday annoyances:
 
@@ -8,12 +8,21 @@ A macOS menu bar companion for [Claude Code](https://claude.com/claude-code) tha
 | The Recent pane doesn't tell you which project a session belongs to | Dropdown lists sessions **grouped by project**, newest first. Click to resume in your terminal; "🆕 New session" always starts from the project root |
 | Checking your subscription rate limit means digging into settings | 5-hour / weekly utilization always visible in the menu bar (🟢/🟡/🔴), plus a read-only **mobile dashboard over Tailscale** |
 
+## Demo
+
+Mobile dashboard (usage bars → per-project sessions → tap a handoff to read it):
+
+![mobile dashboard demo](docs/demo-dashboard.gif)
+
+<!-- TODO: add menu bar demo movie (Screen Studio) -->
+
+
 Requirements: macOS, Python 3.10+, Claude Code CLI logged in (`claude` → `/login`). Optional: [Tailscale](https://tailscale.com) for the mobile dashboard, iTerm support via config.
 
 ## Install
 
 ```sh
-git clone https://github.com/USER/aiagent-control && cd aiagent-control
+git clone https://github.com/nariken/claude-code-companion && cd claude-code-companion
 python3 install.py
 ```
 

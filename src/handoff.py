@@ -14,7 +14,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from common import (HOOK_GUARD_ENV, L, ensure_dirs, get_config,
+from common import (HANDOFF_DIR, HOOK_GUARD_ENV, L, ensure_dirs, get_config,
                     handoff_meta_path, handoff_path, log)
 from sessions import _extract_text
 
@@ -123,11 +123,12 @@ def _budget_allows_llm() -> bool:
 
 def _llm_summarize(convo_text: str, cwd: str) -> str:
     env = dict(os.environ, **{HOOK_GUARD_ENV: "1"})
-    try:
+    ensure_dirs()  # run inside HANDOFF_DIR so the summarizer's own transcript
+    try:           # lands in a project dir that sessions.py knows to hide
         out = subprocess.run(
             ["claude", "-p", "--model", get_config()["summary_model"]],
             capture_output=True, text=True, timeout=180, env=env,
-            input=L(PROMPT_JA, PROMPT_EN) + convo_text, cwd=str(Path.home()))
+            input=L(PROMPT_JA, PROMPT_EN) + convo_text, cwd=str(HANDOFF_DIR))
     except FileNotFoundError:
         log("handoff", "claude CLI not found")
         return ""

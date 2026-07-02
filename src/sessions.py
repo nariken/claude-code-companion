@@ -11,7 +11,13 @@ import time
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from common import PROJECTS_DIR
+from common import HANDOFF_DIR, PROJECTS_DIR
+
+# Sessions created by our own summarizer (or old versions of it) must not
+# show up as user projects/sessions.
+_INTERNAL_CWD = str(HANDOFF_DIR)
+_INTERNAL_LABEL_PREFIXES = ("あなたはClaude Codeセッションの引き継ぎメモ",
+                            "You write handoff notes")
 
 HEAD_BYTES = 64 * 1024
 TAIL_BYTES = 64 * 1024
@@ -109,10 +115,14 @@ def scan_projects(max_sessions_per_project: int = 8,
         proj = Project(dir_name=proj_dir.name)
         for mtime, f in jsonls[:max_sessions_per_project]:
             label, cwd = _session_label_and_cwd(f)
+            if cwd == _INTERNAL_CWD or label.startswith(_INTERNAL_LABEL_PREFIXES):
+                continue
             if cwd and not proj.cwd:
                 proj.cwd = cwd
             proj.sessions.append(Session(
                 session_id=f.stem, path=f, mtime=mtime, label=label, cwd=cwd))
+        if not proj.sessions:
+            continue
         projects.append(proj)
     projects.sort(key=lambda p: p.last_active, reverse=True)
     return projects
