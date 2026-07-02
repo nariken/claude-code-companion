@@ -10,11 +10,13 @@ A macOS menu bar companion for [Claude Code](https://claude.com/claude-code) tha
 
 ## Demo
 
-Mobile dashboard (usage bars → per-project sessions → tap a handoff to read it):
+Menu bar: rate-limit at a glance → per-project sessions → one-click new session at the project root, with the previous handoff already injected:
+
+![menu bar demo](docs/demo-menubar.gif)
+
+Mobile dashboard over Tailscale (usage bars → per-project sessions → tap a handoff to read it):
 
 ![mobile dashboard demo](docs/demo-dashboard.gif)
-
-<!-- TODO: add menu bar demo movie (Screen Studio) -->
 
 
 Requirements: macOS, Python 3.10+, Claude Code CLI logged in (`claude` → `/login`). Optional: [Tailscale](https://tailscale.com) for the mobile dashboard, iTerm support via config.
